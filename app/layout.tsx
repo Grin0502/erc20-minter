@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { cookieToInitialState } from "wagmi";
+import { headers } from "next/headers";
+import WagmiProviderComp from "@/config/wagmi-provider";
+
 import "./globals.css";
+import { config } from "@/config/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,12 +27,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialState = cookieToInitialState(config);
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <WagmiProviderComp initialState={initialState}>
+          <main>
+            {children}
+          </main>
+        </WagmiProviderComp>
       </body>
     </html>
   );
