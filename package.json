@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@web3modal/wagmi": "^5.1.11",
+    "multicoin-address-validator": "^0.5.25",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/multicoin-address-validator": "^0.5.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

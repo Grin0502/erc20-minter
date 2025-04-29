@@ -3,14 +3,14 @@ import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 import { cookieStorage, createStorage } from 'wagmi';
 import { Chain } from 'wagmi/chains';
 
-export const projectId = "e6a4e3f2a0b7513d29c8a962c955e629";
+export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 
 if (!projectId) throw new Error('Project ID is not defined');
 
-// ✅ Define your Sonic Testnet chain
-const sonicTestnet: Chain = {
-  id: 57054,
-  name: 'Sonic Blaze Testnet',
+// ✅ Define your Sonic Mainnet chain
+const sonicMainnet: Chain = {
+  id: 146,
+  name: 'Sonic Blaze',
   nativeCurrency: {
     name: 'Sonic',
     symbol: 'S',
@@ -18,19 +18,19 @@ const sonicTestnet: Chain = {
   },
   rpcUrls: {
     default: {
-      http: ['https://rpc.blaze.soniclabs.com'], // Replace with actual Sonic RPC if needed
+      http: ['https://rpc.soniclabs.com'], // Replace with actual Sonic RPC if needed
     },
     public: {
-      http: ['https://rpc.blaze.soniclabs.com'],
+      http: ['https://rpc.soniclabs.com'],
     },
   },
   blockExplorers: {
     default: {
       name: 'Sonic Explorer',
-      url: 'https://blaze.soniclabs.com',
+      url: 'https://www.soniclabs.com',
     },
   },
-  testnet: true,
+  testnet: false,
 };
 
 // 🔧 Your current metadata
@@ -41,9 +41,10 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886'],
 };
 
+
 // ✅ Use Sonic instead of Sepolia (or keep both if needed)
 export const config = defaultWagmiConfig({
-  chains: [sonicTestnet], // or: [sonicTestnet, sepolia] if you want both
+  chains: [sonicMainnet], // or: [sonicMainnet, sepolia] if you want both
   projectId,
   metadata,
   ssr: true,
